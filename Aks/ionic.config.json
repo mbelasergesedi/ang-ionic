@@ -1,0 +1,7 @@
+{
+  "name": "Aks",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
