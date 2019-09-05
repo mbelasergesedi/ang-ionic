@@ -18,7 +18,7 @@ export class AppComponent {
     },
     {
       title: 'Votre code',
-      url: '/home',
+      url: '/votrecode',
       icon: 'code'
     },
     {

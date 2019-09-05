@@ -1,43 +1,52 @@
-import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { InteractionService } from './interaction.service';
-
-import {Injectable} from '@angular/core';
-import { Subject } from 'rxjs/Subject';
-
-@Injectable()
-@ Component ({
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { OrdersService } from '../shared/orders.service';
+import {FilterPipe} from './filter.pipe';
+@Component({
   selector: 'app-interactions',
   templateUrl: './interactions.component.html',
   styleUrls: ['./interactions.component.scss'],
 })
-
 export class InteractionsComponent implements OnInit {
 
-  interactions: any;
-  startAt = new Subject();
-  endAt = new Subject();
-  // tslint:disable-next-line: no-shadowed-variable
-  constructor(private InteractionService: InteractionService) { }
+  private ordersService: OrdersService;
+  name = '';
+  reactiveForm: FormGroup;
+  public placeholder = 'Entrer un DCI';
+  public keyword = 'name';
+  public historyHeading = 'Recemment selectioné';
+  public countriesTemplate = ['Albania', 'Andorra', 'Armenia', 'Austria'];
 
-  ngOnInit() {
-    this.getInteractionsList(this.startAt, this.endAt);
 
-  }
-
-  getInteractionsList(startAt, endAt) {
-    this.InteractionService.getInteractionList().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.key, ...c.payload.val() })
-        )
-      )
-    ).subscribe(interactions => {
-      this.interactions = interactions;
-      console.log (interactions);
+  // tslint:disable-next-line: variable-name
+  constructor(_fb: FormBuilder) {
+    this.reactiveForm = _fb.group({
+      name: ['', Validators.required]
     });
   }
-
-
-
+  ngOnInit() {
+  }
+  submitTemplateForm(value) {
+    console.log(value);
+  }
+  submitReactiveForm() {
+    if (this.reactiveForm.valid) {
+      console.log(this.reactiveForm.value);
+    }
+  }
+  
 }
+
+
+  // constructor(private ordersService: OrdersService) { }
+
+ // coffeeOrders;
+ // ngOnInit() {
+ //   this.getCoffeeOrders();
+ // }
+
+ // getCoffeeOrders = () =>
+ //   this.ordersService
+ //     .getCoffeeOrders()
+ //     .subscribe(res => (this.coffeeOrders = res))
+// }

@@ -7,9 +7,14 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
+  },
+  {
+    path: 'votrecode',
+    loadChildren: () => import('./votrecode/votrecode.module').then(m => m.VotreCodeModule)
   },
   {
     path: 'medicaments',
@@ -38,6 +43,11 @@ const routes: Routes = [
   {
     path: 'interactions',
     loadChildren: () => import('./interactions/interactions.module').then(m => m.InteractionsModule)
+  },
+
+  {
+    path: 'inscription',
+    loadChildren: () => import('./forminscrit/forminscrit.module').then(m => m.FormInscritModule)
   },
 
   {

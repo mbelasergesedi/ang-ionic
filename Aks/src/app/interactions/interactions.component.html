@@ -4,54 +4,38 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      AKSANTIMED
+      Interactions médicamenteuses
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
-
 <ion-content>
-  <!-- Default Label -->
-  <!-- Default Note -->
-
   <ion-grid>
     <ion-row>
       <ion-col size="12">
-        Intéractions médicamenteuses
-
-      </ion-col>
-      <ion-col size="12">
-        <ion-note>L'interaction médicamenteuse est une situation qui résulte de l'administration concomitante ou
-          successive de deux ou plusieurs médicaments (ou parfois d'autres substances comme certains aliments) chez un
-          même patient et dans laquelle l'une des substances absorbées affecte l'activité thérapeutique d'un ou
-          plusieurs des autres médicaments administrés.<br><br> Dans certains cas, on peut avoir une augmentation de
-          l'activité du médicament pour une même dose, dans d'autre une réduction, voire une abolition de l'efficacité
-          du traitement..<br></ion-note>
-      </ion-col>
-      <ion-col size="12">
-
-      </ion-col>
-      <ion-col size="12">
-
-      </ion-col>
-      <ion-col size="12">
-
-      </ion-col>
-      <ion-col size="12">
-
-      </ion-col>
-      <ion-col size="12">
-        <ion-searchbar type="text" debounce="500" (ionInput)="interactions.titre"></ion-searchbar>
-        <ion-list >
-          <ion-item *ngFor="let item of interactions">
-            {{item.titre}}
-          </ion-item>
-        </ion-list>
-      </ion-col>
-      <ion-col size="12">
-        <ion-button expand="block" color="primary">Recherche</ion-button>
+        Médicaments
       </ion-col>
     </ion-row>
   </ion-grid>
-</ion-content>
-<ion-footer></ion-footer>
+  <div class="forms">
+    <div class="template-driven-form">
+      <form #form="ngForm" (ngSubmit)="submitTemplateForm(form.value)">
+        <div class="container">
+          <div class="ng-autocomplete">
+            <ng-autocomplete #ngAutoCompleteStatic [data]="countriesTemplate" name="name" [(ngModel)]="name"
+              [initialValue]="" [placeHolder]="placeholder" [searchKeyword]="keyword"
+              historyIdentifier="countriesTemplateList" [historyHeading]="historyHeading" historyListMaxNumber="6"
+              notFoundText="Pas de résultat" [itemTemplate]="itemTemplateStatic" [notFoundTemplate]="notFoundTemplate">
+            </ng-autocomplete>
+            <ng-template #itemTemplateStatic let-item>
+              <a [innerHTML]="item"></a>
+            </ng-template>
+            <ng-template #notFoundTemplate let-notFound>
+              <div [innerHTML]="notFound"></div>
+            </ng-template>
+          </div>
+          <ion-button expand="block" color="primary" type="submit">Recherche</ion-button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <ion-footer></ion-footer>
