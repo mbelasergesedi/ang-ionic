@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
-import { AccountComponent } from './account.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+// tslint:disable-next-line: import-spacing
+import { RegisterComponent } from  './register.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -13,10 +15,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     RouterModule.forChild([
       {
         path: '',
-        component: AccountComponent
+        component: RegisterComponent
       }
     ])
   ],
-  declarations: [AccountComponent]
+  declarations: [RegisterComponent]
 })
-export class AccountModule {}
+export class RegisterModule {}

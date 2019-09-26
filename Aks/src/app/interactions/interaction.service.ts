@@ -1,13 +1,15 @@
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { InteractionsComponent } from './interactions.component';
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 import { Observable, of } from 'rxjs';
+
 @Injectable()
 export class InteractionSearch {
-  private dbPath = '/interactions';
+
+  private dbPath = '/dci';
 
   interactionRef: AngularFireList<InteractionsComponent> = null;
 
@@ -36,8 +38,3 @@ export class InteractionSearch {
     return this.interactionRef.remove();
   }
 }
-
-
-
-
-

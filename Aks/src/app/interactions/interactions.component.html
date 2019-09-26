@@ -1,41 +1,96 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      Interactions médicamenteuses
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Interactions médicamenteuses</ion-title>
+    </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col size="12">
-        Médicaments
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <div class="forms">
-    <div class="template-driven-form">
-      <form #form="ngForm" (ngSubmit)="submitTemplateForm(form.value)">
-        <div class="container">
-          <div class="ng-autocomplete">
-            <ng-autocomplete #ngAutoCompleteStatic [data]="countriesTemplate" name="name" [(ngModel)]="name"
-              [initialValue]="" [placeHolder]="placeholder" [searchKeyword]="keyword"
-              historyIdentifier="countriesTemplateList" [historyHeading]="historyHeading" historyListMaxNumber="6"
-              notFoundText="Pas de résultat" [itemTemplate]="itemTemplateStatic" [notFoundTemplate]="notFoundTemplate">
-            </ng-autocomplete>
-            <ng-template #itemTemplateStatic let-item>
-              <a [innerHTML]="item"></a>
-            </ng-template>
-            <ng-template #notFoundTemplate let-notFound>
-              <div [innerHTML]="notFound"></div>
-            </ng-template>
-          </div>
-          <ion-button expand="block" color="primary" type="submit">Recherche</ion-button>
-        </div>
-      </form>
-    </div>
-  </div>
-  <ion-footer></ion-footer>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="12">Interactions médicamenteuses</ion-col>
+            <ion-col size="12">
+                <ion-note>
+                    Recherchez par DCI pour obtenir les usages proscrits ainsi que les associations déconseillées.
+                </ion-note>
+            </ion-col>
+            <ion-col size="12">
+
+
+                <div
+                    class="reactive-form"
+                    style="margin-top: 100px;"
+                >
+
+
+
+                    <form
+                        autocomplete="off"
+                        novalidate
+                        [formGroup]="reactiveForm"
+                        (ngSubmit)="submitReactiveForm($event)"
+                    >
+                        <div class="container">
+                            <div class="ng-autocomplete">
+                                <ng-autocomplete
+                                    [data]="dci"
+                                    formControlName="name"
+                                    [initialValue]
+                                    [placeHolder]="placeholder"
+                                    [searchKeyword]="keyword"
+                                    historyIdentifier="dci"
+                                    [historyHeading]="historyHeading"
+                                    historyListMaxNumber="3"
+                                    notFoundText="Not found"
+                                    [itemTemplate]="itemTemplateStatic"
+                                    [notFoundTemplate]="notFoundTemplate"
+                                >
+                                </ng-autocomplete>
+
+
+
+                                <ng-template
+                                    #itemTemplateStatic
+                                    let-item
+                                >
+                                    <a [innerHTML]="item.ATCNM_F"></a>
+                                </ng-template>
+
+
+
+                                <ng-template
+                                    #notFoundTemplate
+                                    let-notFound
+                                >
+                                    <div [innerHTML]="notFound"></div>
+                                </ng-template>
+                            </div>
+
+
+
+                            <ion-button
+                                expand="block"
+                                color="primary"
+                                [disabled]="reactiveForm.invalid"
+                                (click)="save_outage_index()"
+                                ion-button
+                                type="submit"
+                                block
+                            >
+                                Validez
+                            </ion-button>
+
+
+
+                        </div>
+                    </form>
+                    <p [innerHTML]="myResponse"></p>
+                </div>
+            </ion-col>
+            <ion-col size="12"></ion-col>
+            <ion-col size="12"></ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
+<ion-footer></ion-footer>

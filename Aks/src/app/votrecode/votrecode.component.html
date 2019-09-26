@@ -1,68 +1,76 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      Votre code
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Votre code</ion-title>
+    </ion-toolbar>
 </ion-header>
-
-
 <ion-content>
-  <!-- Default Label -->
-  <!-- Default Note -->
+    <!-- Default Label -->
+    <!-- Default Note -->
 
-  <ion-grid>
-    <ion-row>
-      <ion-col size="12">
-        Valider votre code
 
-      </ion-col>
-      <ion-col size="12">
 
-        <ion-note>Vous devez gratter l'étiquette AksantiMed apposée sur la boite de votre médicament.
-        </ion-note>
-      </ion-col>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="12">Valider votre code</ion-col>
+            <ion-col size="12">
 
-      <ion-col size="12">
 
-      </ion-col>
-      <ion-col size="12">
-        <!-- Input with placeholder -->
-        <ion-input type="number" placeholder="Entrer les 12 chiffres du code"></ion-input>
-      </ion-col>
-      <ion-col size="12">
 
-        <ion-button expand="block" color="primary">Validez votre code</ion-button>
-      </ion-col>
-      <ion-col size="12">
-        <ion-card fullscreen>
-          <ion-card-header>
-            <ion-card-subtitle>Votre code</ion-card-subtitle>
-            <ion-card-title>765-877-987-432</ion-card-title>
-            <ion-card-title>Alkeran ampoule 1 X 100 mg</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            Vous êtes le premier à valider ce code.
-          </ion-card-content>
-          <ion-card-content>
-            Fabricant: Aspen
-          </ion-card-content>
-          <ion-card-content>
-            DCI: melaphalan
-          </ion-card-content>
-          <ion-card-content>
-            Numéro de lot: 7666GGGG
-          </ion-card-content>
-          <ion-card-content>
-            Date de péremption: 01-01-2024
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
+                <ion-note>
+                    Vous devez gratter l'étiquette AksantiMed apposée sur la boite de votre médicament.
+                </ion-note>
+            </ion-col>
+            <ion-col size="12"></ion-col>
+            <ion-col size="12"></ion-col>
+            <ion-col size="12">
+                <!-- Debut formulaire -->
+                <!-- If user is loaded show the form, else show the loading template -->
+                <form
+                    [formGroup]="form"
+                    (ngSubmit)="submit()"
+                >
 
-    </ion-row>
-  </ion-grid>
+
+
+                    <ion-item>
+                        <ion-label>Entrer votre code</ion-label>
+                        <ion-input
+                            type="number"
+                            placeholder
+                            id="votrecode"
+                            class="form-control"
+                            formControlName="votrecode"
+                        >
+                        </ion-input>
+
+
+
+                    </ion-item>
+                    <ion-item></ion-item>
+
+
+                    <ion-button
+                        expand="block"
+                        color="primary"
+                        ion-button
+                        type="submit"
+                        block
+                    >
+                        Validez
+                    </ion-button>
+                </form>
+                <p [innerHTML]="myResponse"></p>
+                <ng-template #loading>Votre reponse ...</ng-template>
+                <!-- Fin formulaire -->
+            </ion-col>
+            <ion-col size="12"></ion-col>
+
+
+
+        </ion-row>
+    </ion-grid>
 </ion-content>
 <ion-footer></ion-footer>

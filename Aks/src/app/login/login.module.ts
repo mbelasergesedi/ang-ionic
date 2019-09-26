@@ -3,21 +3,23 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
-
-import { AccountComponent } from './account.component';
+import { ReactiveFormsModule } from '@angular/forms';
+// tslint:disable-next-line: import-spacing
+import { LoginComponent } from './login.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     IonicModule,
     RouterModule.forChild([
       {
         path: '',
-        component: AccountComponent
+        component: LoginComponent
       }
     ])
   ],
-  declarations: [AccountComponent]
+  declarations: [LoginComponent]
 })
-export class AccountModule {}
+export class LoginModule {}

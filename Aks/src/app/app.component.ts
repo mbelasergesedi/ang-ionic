@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-
+// tslint:disable-next-line: import-spacing
+import { AuthenticateService } from './shared/authentication.service';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @Component({
   selector: 'app-root',
@@ -10,6 +12,11 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  userEmail: string;
+  email: string;
+  password: string;
+
+
   public appPages = [
     {
       title: 'Accueil',
@@ -17,7 +24,7 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'Votre code',
+      title: 'Code de votre médicament',
       url: '/votrecode',
       icon: 'code'
     },
@@ -27,9 +34,19 @@ export class AppComponent {
       icon: 'pin'
     },
     {
-      title: 'Professionels',
+      title: 'Annuaire professionels',
       url: '/professionel',
       icon: 'people'
+    },
+    {
+      title: 'Créer un compte',
+      url: '/account',
+      icon: 'person'
+    },
+    {
+      title: 'Connectez-vous',
+      url: '/login',
+      icon: ''
     },
     {
       title: 'Médicaments',
@@ -41,7 +58,7 @@ export class AppComponent {
       url: '/simple'
     },
     {
-      title: 'Recherche complexe',
+      title: 'Recherche avancée',
       url: '/complexe'
     },
     {
@@ -49,17 +66,10 @@ export class AppComponent {
       url: '/interactions',
       icon: 'hand'
     },
-
-
     {
       title: 'Discussions',
       url: '/list',
       icon: 'chatboxes'
-    },
-    {
-      title: 'Votre compte',
-      url: '/account',
-      icon: 'person'
     },
     {
       title: 'AksantiMed',
@@ -71,11 +81,11 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
+    public authenticationService: AuthenticateService,
     private statusBar: StatusBar
   ) {
     this.initializeApp();
   }
-
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();

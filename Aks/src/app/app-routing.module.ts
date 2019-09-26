@@ -2,10 +2,37 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  // { path: '', loadChildren: './login/login.module#LoginPageModule' },
+  // { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
+  // { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardPageModule' }
+  // ,
+
+  //Identification
+
+  //{
+  // path: 'login',
+  // loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+  //},
+
+  // {
+  //  path: 'register',
+  //  loadChildren: () => import('./register/register.module').then(m => m.RegisterModule)
+  //},
+  //{
+  // path: 'dashboard',
+  //loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
+  //},
+
+  //
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+  },
+
   {
     path: '',
     redirectTo: 'home',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
 
   {
@@ -62,4 +89,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

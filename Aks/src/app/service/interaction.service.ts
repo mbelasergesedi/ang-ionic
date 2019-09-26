@@ -1,13 +1,18 @@
+
+import { AngularFirestore } from 'angularfire2/firestore';
+
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { InteractionsComponent } from './interactions.component';
+import { InteractionsComponent } from '../interactions/interactions.component';
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 import { Observable, of } from 'rxjs';
+
 @Injectable()
 export class InteractionSearch {
-  private dbPath = '/interactions';
+
+  private dbPath = '/dci';
 
   interactionRef: AngularFireList<InteractionsComponent> = null;
 
@@ -19,7 +24,7 @@ export class InteractionSearch {
     this.interactionRef.push(interaction);
   }
 
-  updateInteraction(key: string, value: any): Promise<void> {
+  updateInteractioni(key: string, value: any): Promise<void> {
     return this.interactionRef.update(key, value);
   }
 
@@ -27,17 +32,15 @@ export class InteractionSearch {
     return this.interactionRef.remove(key);
   }
 
-  getInteractionList(): AngularFireList<InteractionsComponent> {
+  getInteraction(): AngularFireList<InteractionsComponent> {
     return this.interactionRef;
   }
 
+  geInteractionList(key: string): AngularFireList<InteractionsComponent> {
+    return this.interactionRef;
+  }
 
   deleteAll(): Promise<void> {
     return this.interactionRef.remove();
   }
 }
-
-
-
-
-

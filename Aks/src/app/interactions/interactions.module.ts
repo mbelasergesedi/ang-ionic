@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
 import { IonicModule } from '@ionic/angular';
@@ -7,10 +8,13 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { InteractionsComponent } from './interactions.component';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    HttpClientModule,
     Ng2SearchPipeModule,
     ReactiveFormsModule,
     FormsModule,
